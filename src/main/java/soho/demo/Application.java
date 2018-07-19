@@ -39,12 +39,12 @@ public class Application {
         map.put("username", "张三");
         map.put("password", "123456");
 //        Cnd sql1 = new SQLCnd().eq("username", "zhangsan").gt("age", 18);
-//        Cnd sql2 = new SQLCnd().between("ctime", 1531843200000l, 1531929600000l).notnull("email");
+        Cnd sql = new SQLCnd().between("ctime", 1531843200000l, 1531929600000l).notnull("email").limit(1,10);
+        List<RbacUser> rbacUsers = rbacUserService.findByCnd(sql);
 //        Cnd sql3 = new SQLCnd().or(sql1, sql2).in("state", 1, 2, 3);
 //        List<RbacUser> rbacUsers = rbacUserService.findByCnd(sql3);
-
-        Cnd sql = new SQLCnd().fields("a.id", "a.name", "a.code").from("rbac_role a").join(new Join(MODE.LEFT, "rbac_user_role b").on("a.id", "b.roleId")).join(new Join(MODE.LEFT, "rbac_user c").on("b.userId", "c.id")).eq("c.id", 1l);
-        List<RbacRole> rbacRoles = rbacUserService.findMapByCnd(sql, RbacRole.class);
+//        Cnd sql = new SQLCnd().fields("a.id", "a.name", "a.code").from("rbac_role a").join(new Join(MODE.LEFT, "rbac_user_role b").on("a.id", "b.roleId")).join(new Join(MODE.LEFT, "rbac_user c").on("b.userId", "c.id")).eq("c.id", 1l);
+//        List<RbacRole> rbacRoles = rbacUserService.findMapByCnd(sql, RbacRole.class);
         return map;
     }
 
